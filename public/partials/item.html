@@ -1,0 +1,64 @@
+<div class="page-header">
+	<h1>View Task</h1>
+</div>
+<div class="well well-lg">
+	<strong>CO#</strong><br>{{task.co}}
+	<br>
+	<strong>Company</strong><br>{{task.company}}
+	<br>
+	<strong>Segment</strong><br>{{task.segment}}
+	<br>
+	<strong>Administrator</strong><br>{{task.administrator}}
+	<br>
+	<strong>Auditor</strong><br>{{task.auditor}}
+	<br>
+	<strong>Specialist</strong><br>{{task.specialist}}
+</div>
+
+<div ng-hide="task.userVoted">
+	<p class="lead">Please select one of the following status:</p>
+
+	<form role="form" ng-submit="vote()">
+		<div ng-repeat="choice in task.choices" class="radio">
+			<label>
+				<input type="radio" name="choice" ng-model="task.userVote" value="{{choice._id}}">
+				{{choice.text}}
+			</label>
+		</div>
+		<p><hr></p>
+		<div class="row">
+			<div class="col-xs-6">
+				<a href="#/tasks" class="btn btn-default" role="button"><span class="glyphicon glyphicon-arrow-left"></span> Back to Task List</a>
+			</div>
+			<div class="col-xs-6">
+				<button class="btn btn-primary pull-right" type="submit">Submit &raquo;</button>
+			</div>
+		</div>
+	</form>
+</div>
+	
+<div ng-show="task.userVoted">
+	<table class="result-table">
+		<tr ng-repeat="choice in task.choices">
+			<td>{{choice.text}}</td>
+			<td>
+				<table style="background-color: lightblue; width: {{choice.votes.length/task.totalVotes*50}}%; text-align: right">
+					<tr><td>{{choice.votes.length}}</td></tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+			
+	<p>
+		<em>
+			{{task.totalVotes}} person has reviewed this task.
+			<span ng-show="task.userChoice">Current status is <strong>{{task.userChoice.text}}</strong>.</span>
+		</em>
+	</p>
+	
+	<p><hr></p>
+	
+	<p><a href="#/tasks" class="btn btn-default" role="button"><span class="glyphicon glyphicon-arrow-left"></span> Back to Task List</a></p>
+</div>
+
+<p>&nbsp;</p>

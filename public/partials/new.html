@@ -1,0 +1,69 @@
+<div class="page-header">
+	<h1>Create New Task</h1>
+</div>
+
+
+<form role="form" ng-submit="createTask()">
+	<div class="form-group">
+		<label class="col-sm-2" for="taskCO">CO#</label>
+		<input type="text" ng-model="task.co" class="col-sm-4" class="form-control" id="taskCO" placeholder="Enter task co">
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2" for="taskCompany">Company</label>
+		<input type="text" ng-model="task.company" class="col-sm-4" class="form-control" id="taskCompany" placeholder="Enter task company">
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2" for="taskSegment">Segment</label>
+		<input type="text" ng-model="task.segment" class="col-sm-4" class="form-control" id="taskSegment" placeholder="Enter task segment">
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2" for="taskAdministrator">Administrator</label>
+		<input type="text" ng-model="task.administrator" class="col-sm-4" class="form-control" id="taskAdministrator" placeholder="Enter task administrator">
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2" for="taskAuditor">Auditor</label>
+		<input type="text" ng-model="task.auditor"class="col-sm-4"  class="form-control" id="taskAuditor" placeholder="Enter task auditor">
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2" for="taskSpecialist">Specialist</label>
+		<input type="text" ng-model="task.specialist" class="col-sm-4" class="form-control" id="taskSpecialist" placeholder="Enter task specialist">
+	</div>
+	
+	<div class="form-group">
+		<label>Status options</label>
+		<div ng-repeat="choice in task.choices">
+			<div ng-show = "($index+1) <= 3" >
+				<input type="text" ng-model="choice.text" class="form-control" placeholder={{choice.text}} readonly><br>
+			</div>
+			<div ng-show = "($index+1) > 3" >
+				<input type="text" ng-model="choice.text" class="form-control" placeholder={{choice.text}} ><br>
+			</div>
+
+		</div>
+
+	</div>		
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<button type="button" class="btn btn-default" ng-click="addChoice()"><span class="glyphicon glyphicon-plus"></span> Add another</button>
+		</div>
+	</div>
+	
+	<p><hr></p>
+	
+	<div class="row">
+		<div class="col-xs-6">
+			<a href="#/tasks" class="btn btn-default" role="button"><span class="glyphicon glyphicon-arrow-left"></span> Back to Task List</a>
+		</div>
+		<div class="col-xs-6">
+			<button class="btn btn-primary pull-right" type="submit">Create Task &raquo;</button>
+		</div>
+	</div>
+	
+	<p>&nbsp;</p>
+</form>

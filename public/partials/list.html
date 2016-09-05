@@ -1,0 +1,59 @@
+
+<div class="page-header">
+	<h1>Task List</h1>
+</div>
+
+<div class="row">
+	<div class="col-xs-3">
+		<a href="#/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> New Task</a>
+	</div>
+	<div class = "col-xs-4">
+		Sort by:
+		<select ng-model = "sortOrder">
+			<option value= "+co">CO#</option>
+			<option value= "+company">Company</option>
+			<option value= "+administrator">Administrator</option>
+			<option value= "+auditor">Auditor</option>
+			<option value= "+specialist">Specialist</option>
+			<option value= "-meta.createAt">Time Created</option>
+		</select>
+	</div>
+	<div class="col-xs-5">
+		<input type="text" class="form-control" ng-model="query" placeholder="Search for a task">
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12"><hr></div>
+</div>
+<div class="row" ng-switch on="tasks.length">
+	<ul ng-switch-when="0">
+		<li><em>No tasks in databases. Would you like to <a href="#/new">create one</a>?</li>
+	</ul>
+	<table class="table table-striped table-hover table-bordered">
+		<tr>
+			<th>CO#</th>
+			<th>Company</th>
+			<th>Segment</th>
+			<th>Specialist</th>
+			<th>Auditor</th>
+			<th>Administrator</th>
+			<th>Time Created</th>
+			<th>Remove from My Schedule</th>
+			<th>Delete</th>
+		</tr>
+		<tr ng-repeat="task in tasks | filter:query | orderBy: sortOrder">
+			<td><a href="#/task/{{task._id}}">{{task.co}}</a></td>
+			<td>{{task.company}}</td>
+			<td>{{task.segment}}</td>
+			<td>{{task.specialist}}</td>
+			<td>{{task.auditor}}</td>
+			<td>{{task.administrator}}</td>
+			<td>{{task.date}}</td>
+			<td><button type="button" class="btn btn-primary">Remove from My Schedule</button></td>
+			<td><button type="button" class="btn btn-danger" ng-click="delete(task._id)">Delete</button></td>
+		</tr>
+	</table>
+
+</div>
+<p>&nbsp;</p>
+
